@@ -6,8 +6,8 @@
 #include <WebSocketsServer.h>
 
 // === WLAN-Konfiguration ===
-const char* HOME_SSID     = "HOME_SSID";
-const char* HOME_PASSWORD = "HOME_PASSWORD";
+const char* HOME_SSID     = "FRITZ!Box 6490 Cable";
+const char* HOME_PASSWORD = "85847041542951688843";
 
 const char* AP_SSID     = "WuerfelTracker";
 const char* AP_PASSWORD = "wuerfel1234";

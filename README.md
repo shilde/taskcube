@@ -27,6 +27,7 @@ is enough to switch tasks.
 |-----------|--------|
 | Cube firmware (ESP32) | Working — face detection, debouncing, haptics, WebSocket server, Wi-Fi fallback to AP mode |
 | Receiver (Python)     | Working as a debug/display tool — no persistence |
+| macOS menu bar app    | Working — notifies on face change, no duration tracking |
 | Backend               | Does not exist yet — architecture decisions still open |
 
 ## Components
@@ -42,6 +43,12 @@ Connects to the cube, translates events into readable log lines, and tracks
 the cumulative time per face. Auto-reconnect, mapping
 "face number → human-readable name" (`FACE_NAMES`) configurable. Details and
 example output: see [receiver/README.md](receiver/README.md).
+
+### [`mac-app/`](mac-app/) — macOS menu bar app
+Native Swift app that connects directly to the cube over WebSocket and
+posts a system notification on every face change. No Dock icon, no
+per-face duration tracking (see [receiver](receiver/) for that). Details:
+see [mac-app/README.md](mac-app/README.md).
 
 ### [`backend/`](backend/) — planned persistence + API
 Just a sketch so far. Will store sessions (`face`, `start`, `end`,
