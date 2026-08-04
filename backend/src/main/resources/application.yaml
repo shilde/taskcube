@@ -1,3 +1,14 @@
 spring:
   application:
     name: taskube
+
+springdoc:
+  swagger-ui:
+    document-title: TaskCube Backend API
+    path: /swagger-ui.html
+  mvc:
+    apiversion:
+      use:
+        header: X-API-Version
+      supported: 1.0
+      default: 1.0

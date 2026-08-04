@@ -28,7 +28,7 @@ is enough to switch tasks.
 | Cube firmware (ESP32) | Working — face detection, debouncing, haptics, WebSocket server, Wi-Fi fallback to AP mode |
 | Receiver (Python)     | Working as a debug/display tool — no persistence |
 | macOS menu bar app    | Working — notifies on face change, no duration tracking |
-| Backend               | Does not exist yet — architecture decisions still open |
+| Backend               | Early scaffold — Kotlin/Spring Boot REST API (face mappings, sessions + stats) with Swagger docs, backed by an in-memory placeholder store; single-cube scope, real persistence and ingestion path still open |
 
 ## Components
 
@@ -50,12 +50,14 @@ posts a system notification on every face change. No Dock icon, no
 per-face duration tracking (see [receiver](receiver/) for that). Details:
 see [mac-app/README.md](mac-app/README.md).
 
-### [`backend/`](backend/) — planned persistence + API
-Just a sketch so far. Will store sessions (`face`, `start`, `end`,
-`duration`), aggregate them per day/week/project, and provide an API for a
-frontend. Open questions (tech stack, whether the cube talks to the backend
-directly or via the receiver, data model, auth):
-see [backend/README.md](backend/README.md).
+### [`backend/`](backend/) — persistence + API (early scaffold)
+Kotlin/Spring Boot REST API for face mappings and sessions (`face`,
+`start`, `end`, `duration`), with per-day/week stats and Swagger/OpenAPI
+docs at `/swagger-ui.html`. Scoped to the single physical cube — no cube
+registration/id in the API. Storage is currently an in-memory
+placeholder — nothing survives a restart yet. Open questions (real
+database, whether the cube talks to the backend directly or via the
+receiver, auth): see [backend/README.md](backend/README.md).
 
 ## Quickstart
 
