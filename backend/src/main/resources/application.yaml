@@ -1,14 +1,24 @@
 spring:
   application:
     name: taskube
-
-springdoc:
-  swagger-ui:
-    document-title: TaskCube Backend API
-    path: /swagger-ui.html
+  datasource:
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USER}
+    password: ${DATABASE_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
   mvc:
     apiversion:
       use:
         header: X-API-Version
       supported: 1.0
       default: 1.0
+  springdoc:
+    swagger-ui:
+      document-title: TaskCube Backend API
+      path: /swagger-ui.html
