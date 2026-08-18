@@ -1,4 +1,4 @@
-package de.shcreative.taskube.task.persistence
+package de.shcreative.taskube.tracking.persistence
 
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
@@ -6,19 +6,19 @@ import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.Table
+import java.time.Instant
 import java.util.UUID
-import kotlin.time.Duration
 
 @Entity
-@Table(name = "task")
-class TaskEntity(
+@Table(name = "tracking")
+class TrackingEntity(
     @field:Id
     @field:GeneratedValue(strategy = GenerationType.UUID)
     val id: UUID? = null,
-    val title: String,
-    val description: String?,
-    @field:Column(name = "jira_id")
-    val jiraId: String?,
-    @field:Column(name = "spent_time")
-    var spentTime: Duration = Duration.ZERO,
+    @field:Column(name = "task_id")
+    val taskId: UUID?,
+    @field:Column(name = "starttime")
+    val startTime: Instant,
+    @field:Column(name = "endtime")
+    var endTime: Instant? = null,
 )

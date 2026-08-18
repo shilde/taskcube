@@ -10,8 +10,8 @@ import java.util.UUID
 @Table(name = "face_config")
 class FaceConfigEntity(
     @field:Id
-    @field:Column(name = "faceid")
+    @field:Column(name = "face_id")
     val faceId: Int,
-    @field:Column(name = "taskid")
+    @field:Column(name = "task_id")
     var taskId: UUID?,
 )
