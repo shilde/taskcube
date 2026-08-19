@@ -7,4 +7,5 @@ data class TaskDto(
     val title: String,
     val description: String?,
     val jiraId: String?,
+    val spentTimeMs: Long
 )

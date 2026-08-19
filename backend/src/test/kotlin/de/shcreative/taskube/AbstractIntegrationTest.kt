@@ -11,7 +11,14 @@ import org.testcontainers.containers.PostgreSQLContainer
 abstract class AbstractIntegrationTest {
 
     companion object {
-        private val postgres = PostgreSQLContainer<Nothing>("postgres:17-alpine").apply { start() }
+        private val postgres = PostgreSQLContainer<Nothing>("postgres:17-alpine").apply {
+            start()
+            println("=== Testcontainers PostgreSQL ===")
+            println("JDBC URL:  $jdbcUrl")
+            println("Username:  $username")
+            println("Password:  $password")
+            println("=================================")
+        }
 
         @JvmStatic
         @DynamicPropertySource

@@ -24,5 +24,5 @@ class TaskController(
 
     @GetMapping("/tasks")
     fun getTasks(): List<TaskDto> =
-        taskService.getTasks().map { TaskDto(id = it.id!!, title = it.title, description = it.description, jiraId = it.jiraId) }
+        taskService.getTasks().map { TaskDto(id = it.id!!, title = it.title, description = it.description, jiraId = it.jiraId, spentTimeMs = it.spentTime.inWholeMilliseconds) }
 }

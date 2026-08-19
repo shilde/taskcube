@@ -9,7 +9,7 @@ import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.put
 import org.springframework.transaction.annotation.Transactional
-import kotlin.time.Clock
+import java.time.Instant
 
 @Transactional
 class TrackingControllerIT : AbstractIntegrationTest() {
@@ -22,7 +22,7 @@ class TrackingControllerIT : AbstractIntegrationTest() {
 
     @Test
     fun `PUT face-change with valid face id returns 204`() {
-        val body = objectMapper.writeValueAsString(FaceChangeRequest(startTime = Clock.System.now()))
+        val body = objectMapper.writeValueAsString(FaceChangeRequest(startTime = Instant.now()))
 
         mockMvc.put("/face-change/1") {
             contentType = MediaType.APPLICATION_JSON
@@ -34,7 +34,7 @@ class TrackingControllerIT : AbstractIntegrationTest() {
 
     @Test
     fun `PUT face-change closes previous open event when called twice`() {
-        val body = objectMapper.writeValueAsString(FaceChangeRequest(startTime = Clock.System.now()))
+        val body = objectMapper.writeValueAsString(FaceChangeRequest(startTime = Instant.now()))
 
         mockMvc.put("/face-change/1") {
             contentType = MediaType.APPLICATION_JSON
@@ -50,7 +50,7 @@ class TrackingControllerIT : AbstractIntegrationTest() {
 
     @Test
     fun `PUT face-change with face id below minimum returns 400`() {
-        val body = objectMapper.writeValueAsString(FaceChangeRequest(startTime = Clock.System.now()))
+        val body = objectMapper.writeValueAsString(FaceChangeRequest(startTime = Instant.now()))
 
         mockMvc.put("/face-change/0") {
             contentType = MediaType.APPLICATION_JSON
@@ -62,7 +62,7 @@ class TrackingControllerIT : AbstractIntegrationTest() {
 
     @Test
     fun `PUT face-change with face id above maximum returns 400`() {
-        val body = objectMapper.writeValueAsString(FaceChangeRequest(startTime = Clock.System.now()))
+        val body = objectMapper.writeValueAsString(FaceChangeRequest(startTime = Instant.now()))
 
         mockMvc.put("/face-change/7") {
             contentType = MediaType.APPLICATION_JSON
