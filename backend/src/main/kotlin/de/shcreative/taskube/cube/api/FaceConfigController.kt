@@ -29,5 +29,5 @@ class FaceConfigController(private val service: FaceConfigService) {
 
     @GetMapping("/faces")
     fun getFaces(): List<FaceConfigDto> =
-        service.getTasks().map { FaceConfigDto(faceId = it.faceId, taskId = it.taskId!!) }
+        service.getTasks().mapNotNull { it.taskId?.let { id -> FaceConfigDto(faceId = it.faceId, taskId = id) } }
 }

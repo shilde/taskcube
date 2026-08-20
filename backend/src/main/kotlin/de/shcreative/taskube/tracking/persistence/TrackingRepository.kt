@@ -10,6 +10,14 @@ interface TrackingRepository : JpaRepository<TrackingEntity, UUID> {
 
     fun findFirstByEndTimeIsNull(): TrackingEntity?
 
+    @Query("""
+        SELECT t FROM TrackingEntity t
+        WHERE t.startTime < :to
+          AND (t.endTime > :from OR t.endTime IS NULL)
+          AND t.taskId IS NOT NULL
+    """)
+    fun findSessions(from: Instant, to: Instant): List<TrackingEntity>
+
     @Modifying
     @Query("UPDATE TrackingEntity t SET t.endTime = :endTime WHERE t.id = :id")
     fun closeSession(id: UUID, endTime: Instant)
